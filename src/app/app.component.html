@@ -1,0 +1,45 @@
+<div [@inputState]="inputState" class="d-flex flex-column container mt-4 align-items-center">
+    <div class="w-100 p-2 d-flex flex-row">
+        <div class="d-flex flex-column">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" class="github-image">
+        </div>
+
+        <div class="d-flex flex-column">
+            <div class="h-50 d-flex align-items-end">
+                <p class="m-0 p-0 font-weight-bold">{{appLabels.GITHUB_SEARCH}}</p>
+            </div>
+
+            <div class="h-50 d-flex align-items-start">
+                <p class="m-0 p-0">{{appLabels.SEARCH_TEXT}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-100 mt-3 d-flex flex-row">
+        <form class="w-100 d-flex flex-row justify-content-center" [formGroup]="form">
+            <div class="w-100 form-group">
+                <input class="form-control" placeholder="Start typing to search..." formControlName="input">
+            </div>
+
+            <div class="ml-2 form-group">
+                <select class="form-control form-select search-type" formControlName="select">
+                    <option value="Users">{{appLabels.USERS}}</option>
+
+                    <option value="Repositories">{{appLabels.REPOSITORIES}}</option>
+                </select>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div (scroll)="scrollHandler()" [@inputStateResults]="inputStateResults" class="d-flex flex-column container mt-3 justify-content-center">
+    <div *ngIf="checkResults()">
+        <app-grid [searchType]="selectSearchType" [searchTerm]="searchInput"></app-grid>
+    </div>
+
+    <div class="loader" *ngIf="fetchingResults">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">{{appLabels.LOADING}}</span>
+        </div>
+    </div>
+</div>

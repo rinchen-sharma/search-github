@@ -1,0 +1,13 @@
+.github-image {
+    width: 70px;
+}
+
+.search-type {
+    width: 135px;
+}
+
+.loader {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+}
